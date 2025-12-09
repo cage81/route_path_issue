@@ -33,7 +33,7 @@ class ApiRouteCheck
         Log::debug(__CLASS__ . " " . __FUNCTION__ . " request " . $request->getMethod() . " " . $request->getPathInfo() . " host " . $request->header('host') . " x-real-ip " . $request->header('x-real-ip') . " headers->all " . json_encode($request->headers->all()));
 
         try {
-            $aip = AllowedIp::whereUriParam($request->route('company'))->first();
+            $aip = AllowedIp::whereCompany($request->route('company'))->first();
             if (empty($aip))
                 throw new \Exception('Unable to find');
 
